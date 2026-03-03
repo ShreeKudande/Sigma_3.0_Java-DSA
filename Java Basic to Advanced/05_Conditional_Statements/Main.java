@@ -76,6 +76,7 @@ public class Main{
         Scanner sc = new Scanner(System.in);
         int number = sc.nextInt();
         System.out.println(((number%2)==0)? "Even" : "Odd");
+        sc.close()
     }
 
     public static void checkIfaStudentWillPassOrFail() {
