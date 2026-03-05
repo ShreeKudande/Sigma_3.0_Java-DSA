@@ -203,27 +203,27 @@ public class Main {
     }
 
     public static void primeOrNot() {
-
-        System.out.print("Enter a number to check if its prime or not : ");
         Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a number to check if its Prime or not : ");
         int n = sc.nextInt();
 
         if(n == 2) {
-            System.out.println("Its a prime number.");
+            System.out.println("n is prime");
         } else {
 
-            for(int i = 2; i < n; i++) { // n is a multiple of i (i not equal to 1 or n)
-                if(n % i == 0) {
-                    System.out.println("Its not a prime number.");
-                    break;
-                } else {
-                    System.out.println("Its a prime number.");
-                    break;
+            boolean isPrime = true;
+            for(int i = 2; i <= n/2; i++) {
+                if(n % i == 0) { // n is a multiple of i (i not equal to 1 or n)
+                    isPrime = false;
                 }
             }
 
-        }
-            
+            if(isPrime == true) {
+                System.out.println("n is prime");
+            } else {
+                System.out.println("n is not prime");
+            }
+            }
     }
 
     public static void main(String args[]) {
