@@ -1,0 +1,71 @@
+Q. Print below pattern?
+A
+BC
+DEF
+GHIJ
+
+Ans.
+// INITIALIZATION:
+// char ch = 'A';  // The starting character is 'A'. It is outside the loops so it retains its value.
+
+// OUTER LOOP: for(int i = 1; i <= 4; i++) 
+// Controls the rows. It will run 4 times.
+
+// INNER LOOP: for(int j = 1; j <= i; j++) 
+// Controls the columns. It runs 'i' times for each row.
+
+// ==========================================
+//                 DRY RUN
+// ==========================================
+
+// --- Row 1 (i = 1) ---
+// Inner loop runs 1 time (j = 1 to 1)
+//   j=1: System.out.print(ch) -> Prints 'A'
+//        ch++                 -> 'ch' becomes 'B'
+// System.out.println()        -> Moves to the next line
+// Console Output:
+// A
+
+// --- Row 2 (i = 2) ---
+// Inner loop runs 2 times (j = 1 to 2)
+//   j=1: System.out.print(ch) -> Prints 'B'
+//        ch++                 -> 'ch' becomes 'C'
+//   j=2: System.out.print(ch) -> Prints 'C'
+//        ch++                 -> 'ch' becomes 'D'
+// System.out.println()        -> Moves to the next line
+// Console Output:
+// A
+// BC
+
+// --- Row 3 (i = 3) ---
+// Inner loop runs 3 times (j = 1 to 3)
+//   j=1: System.out.print(ch) -> Prints 'D'
+//        ch++                 -> 'ch' becomes 'E'
+//   j=2: System.out.print(ch) -> Prints 'E'
+//        ch++                 -> 'ch' becomes 'F'
+//   j=3: System.out.print(ch) -> Prints 'F'
+//        ch++                 -> 'ch' becomes 'G'
+// System.out.println()        -> Moves to the next line
+// Console Output:
+// A
+// BC
+// DEF
+
+// --- Row 4 (i = 4) ---
+// Inner loop runs 4 times (j = 1 to 4)
+//   j=1: System.out.print(ch) -> Prints 'G'
+//        ch++                 -> 'ch' becomes 'H'
+//   j=2: System.out.print(ch) -> Prints 'H'
+//        ch++                 -> 'ch' becomes 'I'
+//   j=3: System.out.print(ch) -> Prints 'I'
+//        ch++                 -> 'ch' becomes 'J'
+//   j=4: System.out.print(ch) -> Prints 'J'
+//        ch++                 -> 'ch' becomes 'K'
+// System.out.println()        -> Moves to the next line
+// Console Output:
+// A
+// BC
+// DEF
+// GHIJ
+
+// Outer loop condition (i <= 4) fails when i becomes 5. Execution ends.
