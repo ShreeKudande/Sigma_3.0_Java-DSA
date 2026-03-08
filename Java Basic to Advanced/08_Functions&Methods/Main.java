@@ -36,7 +36,7 @@ public class Main{
         // return sum; --> if using this doo change the function type too Int
     }
 
-    public static void whatHappensInMemory() {
+    public static void whatHappensInMemory() {  
         /*
         * What happens in memory?
         * The Call Stack is a LIFO (Last-In, First-Out) memory structure that a program uses 
@@ -58,12 +58,71 @@ public class Main{
         */
     }
 
+    public static void swap(int a, int b) {
+        int temp = a;
+        a = b;
+        b = temp;
+        // System.out.println("a = " + a); // This would print 6
+        // System.out.println("b = " + b); // This would print 5
+
+        /* 
+        Call by Value vs. Call by Reference
+        Call by Value: A copy of the variable's value is passed to the method. Any modifications made to the parameter inside the method only affect the local copy, leaving the original variable unchanged.
+
+        Call by Reference: The memory address (reference) of the variable is passed to the method. Any modifications made to the parameter directly affect the original variable in memory.
+
+        Important Note for Java: Java is strictly Call by Value. It does not support Call by Reference. When passing primitive data types (like int, char), it passes a copy of the literal value. When passing objects, it passes a copy of the reference pointing to that object.
+         */
+    }
+
+    public static int productOfa_b(int a, int b) {
+        int ans = a*b;
+        return ans;
+    }
+
+    public static int factorial(int n) {
+        if(n == 0) {
+            return 1;
+        }
+        int ans = factorial(n-1) * n;
+        return ans;
+    }
+
+    public static int binomialCoefficient(int n, int r) {
+        int ans = factorial(n) / (factorial(r) * factorial(n-r));
+        return ans;
+    }
+
+    public static void inbuild_vs_UserDefinedMethods() {
+        /*
+        In-built methods are pre-written functions provided by Java's standard library, such as System.out.println() or Math.max(). They are ready to use for common tasks, saving you from writing basic logic from scratch.
+
+        User-defined methods are custom functions you create to perform specific tasks unique to your program. You define their logic, name, and parameters to break down complex problems and make your code reusable and organized.
+        */
+    }
+
+    public static void functionsOverloading() {
+        
+    }
+
     public static void main(String args[]) {
         // introductionToFunctions(); //function call
         // calculateSum(4, 6); // arguments or actual parameters
         // whatHappensInMemory();
-        
 
+        /* 
+        int a = 5, b = 6;
+        swap(a, b); // Call by value: Passes the values '5' and '6', NOT the variables themselves.       
+        // Since swap() only modified its local copies, the original 'a' and 'b' remain unchanged.
+        System.out.println("a = " + a); // This would print 5
+        System.out.println("b = " + b); // This would print 6
+        */
+
+        // System.out.println(productOfa_b(4, 5));  
+        // System.out.println(factorial(6));
+        // System.out.println(binomialCoefficient(4, 2));
+        // inbuild_vs_UserDefinedMethods();
+        functionsOverloading();
         
     }
 }
