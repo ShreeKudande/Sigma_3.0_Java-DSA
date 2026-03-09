@@ -101,10 +101,84 @@ public class Main{
         */
     }
 
-    public static void functionsOverloading() {
+    static class Calculator {
+        /* 
+        Method Overloading in Java -
+        Method overloading (often called function overloading) occurs when two or more methods within the same class share the exact same name but have different parameter lists. It is a way to implement compile-time (static) polymorphism in Java.
+
+        The compiler differentiates these methods based on the method signature, which includes:
+
+        The number of parameters.
+
+        The data types of the parameters.
+
+        The sequence of the parameters.
+
+        Note: Changing only the return type is not sufficient to overload a method and will cause a compilation error.
         
+         */
+        
+        // Method 1: Adds two integers
+        public int add(int a, int b) {
+            return a + b;
+        }
+
+        // Method 2: Overloaded - changes the NUMBER of parameters
+        public int add(int a, int b, int c) {
+            return a + b + c; 
+        }
+
+        // Method 3: Overloaded - changes the DATA TYPE of parameters
+        public double add(double a, double b) {
+            return a + b;
+        }
     }
 
+    public static boolean check_if_a_number_is_PrimeOrNot(int n) {
+        /*  boolean isPrime = true;
+        for(int i = 2; i < n; i++) {
+            if(n % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        return isPrime; */
+
+        //corner cases
+        if(n == 1) {
+            System.out.println("1 is neither prime nor composite.");
+            return false;
+        }
+        
+         for(int i = 2; i < n; i++) {
+            if(n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+
+    } 
+
+    public static boolean check_prime_Optimized(int n) {
+        for(int i = 2; i <= Math.sqrt(n); i++) {
+            if(n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int primesInRange(int start, int end) {
+        for(int i = start; i <= end; i++) {
+            for(int j = 2; j <= i; j++) {
+                if(i % j == 0) {
+                    return false;
+                }
+                System.out.println(j);
+            }
+        }
+    }
+ 
     public static void main(String args[]) {
         // introductionToFunctions(); //function call
         // calculateSum(4, 6); // arguments or actual parameters
@@ -122,7 +196,19 @@ public class Main{
         // System.out.println(factorial(6));
         // System.out.println(binomialCoefficient(4, 2));
         // inbuild_vs_UserDefinedMethods();
-        functionsOverloading();
         
+        /* // 1. Create an instance of the Calculator class
+        Calculator calc = new Calculator();
+        // 2. Call the overloaded methods and print the results
+        System.out.println("Sum of two integers: " + calc.add(10, 20));       // Calls Method 1
+        System.out.println("Sum of three integers: " + calc.add(10, 20, 30)); // Calls Method 2
+        System.out.println("Sum of two doubles: " + calc.add(10.5, 20.5));    // Calls Method 3
+        } */
+
+        // System.out.println(check_if_a_number_is_PrimeOrNot(1));
+        // System.out.println(check_prime_Optimized(9)); 
+        primesInRange(2, 10);        
+
+
     }
 }
