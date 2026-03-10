@@ -168,13 +168,10 @@ public class Main{
         return true;
     }
 
-    public static int primesInRange(int start, int end) {
-        for(int i = start; i <= end; i++) {
-            for(int j = 2; j <= i; j++) {
-                if(i % j == 0) {
-                    return false;
-                }
-                System.out.println(j);
+    public static void primesInRange(int n) {
+        for(int i = 2; i <= n; i++) {
+            if(check_prime_Optimized(i)) {
+                System.out.print(i + " ");
             }
         }
     }
@@ -207,8 +204,7 @@ public class Main{
 
         // System.out.println(check_if_a_number_is_PrimeOrNot(1));
         // System.out.println(check_prime_Optimized(9)); 
-        primesInRange(2, 10);        
-
+        // primesInRange(20);        
 
     }
 }
