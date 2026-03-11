@@ -175,6 +175,34 @@ public class Main{
             }
         }
     }
+
+    public static void binaryToDecimal(int binNum) {
+        int myNum = binNum;
+        int pow = 0;
+        int decNum = 0;
+
+        while(binNum > 0) {
+            int lastDigit = binNum % 10;
+            decNum = decNum + (lastDigit * (int)Math.pow(2, pow));
+            pow++;
+            binNum /= 10;
+        }
+        System.out.println("decimal of " + myNum + " = " + decNum);
+    }
+
+    public static void decimalToBinary(int decNum) {
+        int myNum = decNum;
+        int pow = 0;
+        int binNum = 0;
+
+        while(decNum > 0) {
+            int rem = decNum % 2;
+            binNum = binNum + (rem * (int)Math.pow(10, pow));
+            pow++;
+            decNum = decNum/2;
+        }
+        System.out.println("binary form of " + myNum + " = " + binNum);
+    }
  
     public static void main(String args[]) {
         // introductionToFunctions(); //function call
@@ -204,7 +232,9 @@ public class Main{
 
         // System.out.println(check_if_a_number_is_PrimeOrNot(1));
         // System.out.println(check_prime_Optimized(9)); 
-        // primesInRange(20);        
+        // primesInRange(20);  
+        // binaryToDecimal(1010);    
+        // decimalToBinary(10); 
 
     }
 }
