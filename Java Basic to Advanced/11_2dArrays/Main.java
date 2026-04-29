@@ -79,7 +79,52 @@ public class Main {
         }
         System.out.println();
     }
-    
+
+    public static int diagonalSum(int mat[][]) { //O(n^2) --> O(n)
+        int sum = 0;
+
+        // for(int i = 0; i < mat.length; i++) {
+        //     for(int j = 0; j < mat[0].length; j++) {
+        //         if(i == j) {
+        //             sum += mat[i][j];
+        //         }
+        //         else if((i+j) == mat.length-1) {
+        //             sum += mat[i][j];
+        //         }
+        //     }
+        // }
+
+        for(int i = 0; i < mat.length; i++) {
+            //PD --- [i == j]
+            sum += mat[i][i];
+
+            //SD --- [i + j = n - 1]
+            if(i != mat.length - i - 1)
+                sum += mat[i][mat.length - i - 1]; // [j = n - 1 - i]
+        }
+        return sum;
+    }
+
+    public static boolean StaircaseSearch(int matrix[][], int key) {
+        int row = 0;
+        int col = matrix[0].length - 1;
+
+        while(row < matrix.length && col >= 0) {
+            if(matrix[row][col] == key) {
+                System.out.println("found key at (" + row + "," + col + ")");
+                return true;
+            }
+            else if(key < matrix[row][col]) {
+                col--;
+            }
+            else{
+                row++;
+            }
+        }
+        System.out.println("Key not found!");
+        return false;
+    }
+  
     public static void main(String args[]) {
         // CreationOf2dArrays();
 
@@ -93,14 +138,33 @@ public class Main {
         In the Array of Arrays approach (used by Java), memory is not continuous. The main array simply holds references or pointers. Each reference points to an independent 1D array located elsewhere in memory, which acts as a row. Because these rows are allocated separately, they can have different lengths, allowing for jagged arrays. */
 
         //Spiral Matrix
-        int matrix[][] = {
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 15, 16}
-        };
+        // int matrix[][] = {
+        //     {1, 2, 3, 4},
+        //     {5, 6, 7, 8},
+        //     {9, 10, 11, 12},
+        //     {13, 14, 15, 16}
+        // };
 
-        printSpiral(matrix);
+        // printSpiral(matrix);
+
+        //Diagonal Sum
+        // int mat[][] = {
+        //     {1, 2, 3},
+        //     {4, 5, 6},
+        //     {7, 8, 9}
+        // };
+
+        // System.out.print(diagonalSum(mat));
+        
+        //StaircaseSearch
+        int matrix[][] = {
+            {10, 20, 30, 40},
+            {15, 25, 35, 45},
+            {27, 29, 37, 48},
+            {32, 33, 39, 50}
+        };
+        int key = 33;
+        StaircaseSearch(matrix, key);
         
     }
 }
