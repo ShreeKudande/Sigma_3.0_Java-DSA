@@ -1,4 +1,6 @@
+import java.util.*;
 import java.util.Arrays;
+import java.util.Collections;
 
 /* 
 Basic Algorithms
@@ -86,6 +88,48 @@ public class Main{
         }
     }
 
+    public static void printArr(int arr[]) {
+        for(int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+    
+    public static void printArrInteger(Integer arr[]) {
+        for(Integer num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+
+    public static int compare(int a, int b) {
+        // a < b -ve
+        // a == b 0
+        //a > b +ve
+        return a - b;
+        // return b - a; --> gives descending order [Comparators]
+    }
+
+    public static void countingSort(int arr[]) {
+        int largest = Integer.MIN_VALUE;
+        for(int i = 0; i < arr.length; i++) {
+            largest = Math.max(largest, arr[i]);
+        }
+
+        int count[] = new int[largest+1];
+        for(int i = 0; i < arr.length; i++) {
+            count[arr[i]]++;
+        }
+
+        //sorting
+        int j = 0;
+        for(int i = 0; i < count.length; i++) {
+            while(count[i] > 0) {
+                arr[j] = i;
+                j++;
+                count[i]--;
+            }
+        }
+    }
+
     public static void main(String args[]) {
 
         //Bubble Sort
@@ -103,8 +147,27 @@ public class Main{
         // selectionSort(arr);
 
         //Insertion Sort
-        int arr[] = {5, 4, 1, 3, 2};
-        insertionSort(arr);
+        // int arr[] = {5, 4, 1, 3, 2};
+        // insertionSort(arr);
+
+        //Inbuilt Sort
+        // int arr[] = {5, 4, 1, 3, 2};
+        // Integer arr1[] = {5, 4, 1, 3, 2};
+
+        // Arrays.sort(arr);
+        // Arrays.sort(arr, 0, 3);
+        // printArr(arr);
+
+        // Arrays.sort(arr1, Collections.reverseOrder());
+        //Arrays.sort(arr1, 0, 3, Collections.reverseOrder());
+        // printArrInteger(arr1);
+
+        //Counting Sort
+        int arr[] = {1, 4, 1, 3, 2, 4, 3, 7};
+        countingSort(arr);
+        printArr(arr);
+
+
     }
 
 }

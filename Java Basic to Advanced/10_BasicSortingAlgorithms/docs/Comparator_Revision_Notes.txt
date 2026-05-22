@@ -1,0 +1,117 @@
+================================================================================
+MASTER REVISION NOTES: COMPARATORS & CUSTOM SORTING
+================================================================================
+
+1. THE CORE CONCEPT
+--------------------------------------------------------------------------------
+A Comparator is a function that defines a custom sorting order. Whenever a sorting 
+algorithm (or a data structure like a PriorityQueue) needs to order two elements, 
+it asks the Comparator: "Should element A come before element B?"
+
+The Comparator answers by returning an INTEGER.
+
+
+2. THE GOLDEN RULE OF RETURN VALUES
+--------------------------------------------------------------------------------
+Given compare(a, b):
+* RETURN < 0 (-ve) : 'a' comes BEFORE 'b'  (No swap)
+* RETURN == 0      : 'a' and 'b' are equal (Maintain relative order)
+* RETURN > 0 (+ve) : 'a' comes AFTER 'b'   (Swap them)
+
+Mental Model: Think of it as placing 'a' and 'b' on a number line.
+If (a - b) is negative, 'a' sits to the left of 'b'.
+
+
+3. ASCENDING VS. DESCENDING (THE MATH)
+--------------------------------------------------------------------------------
+ASCENDING ORDER (Smallest to Largest):
+* Logic: If a < b, we want 'a' first. So we need a negative return.
+* Code:  return a - b; (See warning below)
+* Safe Code: return Integer.compare(a, b);
+
+DESCENDING ORDER (Largest to Smallest):
+* Logic: If a < b, we want 'b' first. So we need a positive return to force a swap.
+* Code:  return b - a; (See warning below)
+* Safe Code: return Integer.compare(b, a);
+
+
+4. ⚠️ CRITICAL INTERVIEW GOTCHA: INTEGER OVERFLOW ⚠️
+--------------------------------------------------------------------------------
+Never use `return a - b;` or `return b - a;` in a technical interview unless 
+you are 100% certain the numbers are small positive integers.
+
+Why? Integer Overflow.
+If a = 2,000,000,000 (2 billion) and b = -2,000,000,000 (-2 billion):
+(a - b) = 4,000,000,000. 
+This exceeds the maximum 32-bit integer limit (2.14 billion) and wraps around 
+to a NEGATIVE number. The sorter will think 'a' is smaller than 'b', which is 
+completely wrong.
+
+Always use built-in comparators:
+* Primitives: Integer.compare(a, b), Double.compare(a, b)
+* Strings:    s1.compareTo(s2)
+
+
+5. MODERN SYNTAX (LAMBDA EXPRESSIONS)
+--------------------------------------------------------------------------------
+Instead of writing verbose anonymous classes, use lambdas.
+
+// 1. Sorting an array of objects
+Arrays.sort(arr, (a, b) -> Integer.compare(a, b));
+
+// 2. Sorting Collections
+Collections.sort(list, (a, b) -> b.compareTo(a)); // Descending Strings
+
+// 3. The cleanest way: Comparator.comparing()
+list.sort(Comparator.comparing(Person::getAge));
+list.sort(Comparator.comparing(Person::getAge).reversed());
+
+
+6. COMMON LEETCODE / SYSTEM PATTERNS
+--------------------------------------------------------------------------------
+
+PATTERN A: Sorting 2D Arrays (e.g., Merge Intervals)
+----------------------------------------------------
+// Sort intervals based on starting times
+int[][] intervals = {{1, 3}, {8, 10}, {2, 6}, {15, 18}};
+Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+
+
+PATTERN B: Custom PriorityQueues (Heaps)
+----------------------------------------------------
+// Min-Heap (Default)
+PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+// Max-Heap (Requires custom comparator)
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
+// Or natively:
+PriorityQueue<Integer> maxHeap2 = new PriorityQueue<>(Collections.reverseOrder());
+
+
+PATTERN C: Multi-level Sorting (Tie-Breakers)
+----------------------------------------------------
+// Sort by length first. If lengths are equal, sort alphabetically.
+String[] words = {"apple", "bat", "cat", "banana"};
+Arrays.sort(words, (a, b) -> {
+    if (a.length() != b.length()) {
+        return Integer.compare(a.length(), b.length());
+    }
+    return a.compareTo(b);
+});
+
+// Modern Java equivalent (Highly recommended for clarity):
+Arrays.sort(words, Comparator.comparingInt(String::length)
+                             .thenComparing(Comparator.naturalOrder()));
+
+
+7. COMPARABLE vs COMPARATOR (The Difference)
+--------------------------------------------------------------------------------
+* Comparable (java.lang.Comparable):
+  - Modifies the class itself (e.g., `class Student implements Comparable<Student>`).
+  - Provides a SINGLE default sorting sequence using `compareTo(T o)`.
+  - Used for natural ordering (e.g., numbers, alphabets).
+
+* Comparator (java.util.Comparator):
+  - External to the class being sorted.
+  - Allows MULTIPLE sorting sequences (e.g., sort by age, sort by name, sort by GPA).
+  - Uses `compare(T o1, T o2)`.
