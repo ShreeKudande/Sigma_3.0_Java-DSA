@@ -1,0 +1,53 @@
+/* 
+JAVA OBJECT-ORIENTED PROGRAMMING (OOP) - CORE DEFINITIONS
+*/
+
+/* * 1. CLASS
+ * Core Definition: A class is a user-defined blueprint, template, or prototype 
+ * from which individual objects are created. It defines the properties (fields) 
+ * and behaviors (methods) that all objects of that type will share.
+ * * Technical Execution: It is a logical entity that does not consume any memory 
+ * until an instance of it is created.
+ */
+
+/* * 2. OBJECT
+ * Core Definition: An object is a self-contained, real-world instance of a class 
+ * that possesses a specific state, behavior, and identity.
+ * * Technical Execution: It is a physical entity created at runtime using the 'new' 
+ * keyword, which allocates distinct memory space on the heap.
+ */
+
+/* * 3. ENCAPSULATION
+ * Core Definition: Encapsulation is the practice of bundling data (variables) 
+ * and the methods that operate on that data into a single unit (a class), 
+ * while restricting direct access to the internal components.
+ * * Technical Execution: It achieves data hiding by declaring class variables as 
+ * 'private' and exposing them strictly through public getter and setter methods, 
+ * ensuring data validation and security.
+ */
+
+/* * 4. INHERITANCE
+ * Core Definition: Inheritance is the mechanism by which a new class (subclass 
+ * or child) automatically acquires the attributes and methods of an existing 
+ * class (superclass or parent).
+ * * Technical Execution: It establishes a parent-child ("IS-A") relationship using 
+ * the 'extends' keyword, which maximizes code reusability and forms the basis 
+ * for runtime polymorphism.
+ */
+
+/* * 5. POLYMORPHISM
+ * Core Definition: Polymorphism means "many forms." It is the ability of a single 
+ * method, interface, or object to behave differently based on the context in 
+ * which it is called.
+ * * Technical Execution: Java supports two types: Compile-time polymorphism 
+ * (method overloading - same name, different parameters), and Runtime polymorphism 
+ * (method overriding - child class redefining a parent class method).
+ */
+
+/* * 6. ABSTRACTION
+ * Core Definition: Abstraction is the process of hiding complex internal 
+ * implementation details from the user and displaying only the essential, 
+ * high-level features of a system.
+ * * Technical Execution: It focuses on *what* the object does rather than *how* * it does it. Implemented using 'abstract' classes (for partial abstraction) and 
+ * 'interfaces' (for 100% total abstraction).
+ */
